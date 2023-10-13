@@ -65,7 +65,7 @@ const ChatRow: FC<ChatRowProps> = (props) => {
           <Button
             variant={"ghost"}
             size={"sm"}
-            title="Copy text"
+            title="Copiar texto"
             className="justify-right flex"
             onClick={handleButtonClick}
           >

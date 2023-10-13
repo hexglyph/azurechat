@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        'monoid': ['Monoid'],
+        'monoid-bold': ['MonoidBold']
+      },
       colors: {
         brand: "hsl(var(--brand))",
         border: "hsl(var(--border))",

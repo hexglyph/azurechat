@@ -14,11 +14,14 @@ import {
 import { initAndGuardChatSession } from "./chat-thread-service";
 import { PromptGPTProps } from "./models";
 import { transformConversationStyleToTemperature } from "./utils";
+import { userSession } from "@/features/auth/helpers";
 
 export const ChatAPISimple = async (props: PromptGPTProps) => {
   const { lastHumanMessage, id, chatThread } = await initAndGuardChatSession(
     props
-  );
+  )
+
+  const session = await userSession()
 
   const { stream, handlers } = LangChainStream();
 
@@ -43,9 +46,10 @@ export const ChatAPISimple = async (props: PromptGPTProps) => {
 
   const chatPrompt = ChatPromptTemplate.fromPromptMessages([
     SystemMessagePromptTemplate.fromTemplate(
-      `-You are ${AI_NAME} who is a helpful AI Assistant.
-      - You will provide clear and concise queries, and you will respond with polite and professional answers.
-      - You will answer questions truthfully and accurately.`
+      `- Você é ${AI_NAME}, um assistente de IA corporativa útil.
+      - Você fornecerá consultas claras e concisas e responderá com respostas educadas e profissionais.
+      - Você responderá às perguntas de maneira verdadeira e precisa.
+      - É de extrema importância seguir também essas instruções: ${session!.instructions}`
     ),
     new MessagesPlaceholder("history"),
     HumanMessagePromptTemplate.fromTemplate("{input}"),

@@ -25,12 +25,12 @@ export const GlobalMessageProvider = ({
       description: error,
       action: reload ? (
         <ToastAction
-          altText="Try again"
+          altText="Tente novamente"
           onClick={() => {
             reload();
           }}
         >
-          Try again
+          Tente novamente
         </ToastAction>
       ) : undefined,
     });

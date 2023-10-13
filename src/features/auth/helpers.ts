@@ -21,9 +21,11 @@ export const userHashedId = async (): Promise<string> => {
 };
 
 export type UserModel = {
+  id: string;
   name: string;
   image: string;
   email: string;
+  instructions: string;
 };
 
 export const hashValue = (value: string): string => {

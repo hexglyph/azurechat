@@ -24,13 +24,13 @@ export const useFileSelection = (props: Props) => {
   const onFileChange = async (formData: FormData) => {
     try {
       setIsUploadingFile(true);
-      setUploadButtonLabel("Uploading document...");
+      setUploadButtonLabel("Enviando o documento...");
       formData.append("id", props.id);
       const file: File | null = formData.get("file") as unknown as File;
       const uploadResponse = await UploadDocument(formData);
 
       if (uploadResponse.success) {
-        setUploadButtonLabel("Indexing document...");
+        setUploadButtonLabel("Indexando o documento...");
 
         const indexResponse = await IndexDocuments(
           file.name,
@@ -41,7 +41,7 @@ export const useFileSelection = (props: Props) => {
         if (indexResponse.success) {
           showSuccess({
             title: "File upload",
-            description: `${file.name} uploaded successfully.`,
+            description: `${file.name} enviado com sucesso.`,
           });
           setUploadButtonLabel("");
           setChatBody({ ...chatBody, chatOverFileName: file.name });

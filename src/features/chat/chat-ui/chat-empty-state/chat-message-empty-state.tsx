@@ -6,7 +6,7 @@ import { ChatFileUI } from "../chat-file/chat-file-ui";
 import { ChatStyleSelector } from "./chat-style-selector";
 import { ChatTypeSelector } from "./chat-type-selector";
 
-interface Prop {}
+interface Prop { }
 
 export const ChatMessageEmptyState: FC<Prop> = (props) => {
   const { fileState } = useChatContext();
@@ -17,25 +17,28 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
     <div className="grid grid-cols-5 w-full items-center container mx-auto max-w-3xl justify-center h-full gap-9">
       <div className="col-span-2 gap-5 flex flex-col flex-1">
         <img src="/ai-icon.png" className="w-36" />
+        <Typography variant="h4" className="text-primary">
+          Olá! Bem vindo ao Prodam IA
+        </Typography>
         <p className="">
-          Start by just typing your message in the box below. You can also
-          personalise the chat by making changes to the settings on the right.
+          Comece digitando sua mensagem na caixa abaixo. Você também pode
+          personalizar a conversa fazendo alterações nas configurações.
         </p>
       </div>
       <Card className="col-span-3 flex flex-col gap-5 p-5 ">
         <Typography variant="h4" className="text-primary">
-          Personalise
+          Personalize
         </Typography>
 
         <div className="flex flex-col gap-2">
           <p className="text-sm text-muted-foreground">
-            Choose a conversation style
+            Escolha o estilo da conversa
           </p>
           <ChatStyleSelector disable={false} />
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-sm text-muted-foreground">
-            How would you like to chat?
+            Como você gostaria de conversar?
           </p>
           <ChatTypeSelector disable={false} />
         </div>

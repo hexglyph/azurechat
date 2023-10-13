@@ -66,7 +66,16 @@ export class CosmosDBContainer {
     return CosmosDBContainer.instance;
   }
 
-  public async getContainer(): Promise<Container> {
-    return await this.container;
+  public async getContainer(containerName?: string): Promise<Container> {
+      if (containerName) {
+          const endpoint = process.env.AZURE_COSMOSDB_URI;
+          const key = process.env.AZURE_COSMOSDB_KEY;
+          const client = new CosmosClient({ endpoint, key });
+          const database = client.database(DB_NAME);
+          const container = database.container(containerName);
+          return container;
+      } else {
+          return await this.container;
+      }
   }
 }

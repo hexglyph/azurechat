@@ -3,7 +3,8 @@ import { Provider } from "next-auth/providers";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { hashValue } from "./helpers";
+import { hashValue, userHashedId } from "./helpers";
+import { getUserInstructions } from "../user-service";
 
 const configureIdentityProvider = () => {
   const providers: Array<Provider> = [];
@@ -42,7 +43,8 @@ const configureIdentityProvider = () => {
             ...profile,
             // throws error without this - unsure of the root cause (https://stackoverflow.com/questions/76244244/profile-id-is-missing-in-google-oauth-profile-response-nextauth)
             id: profile.sub,
-            isAdmin: adminEmails?.includes(profile.email.toLowerCase()) || adminEmails?.includes(profile.preferred_username.toLowerCase())
+            isAdmin: adminEmails?.includes(profile.email.toLowerCase()) || adminEmails?.includes(profile.preferred_username.toLowerCase()),
+            instructions: profile.instructions,
           }
           return newProfile;
         }
@@ -90,13 +92,24 @@ export const options: NextAuthOptions = {
   providers: [...configureIdentityProvider()],
   callbacks: {
     async jwt({token, user, account, profile, isNewUser, session}) {
+      if (user) {
+        token.id = user.id;
+        token.isAdmin = user.isAdmin;
+        token.instructions = user.instructions;
+      }
       if (user?.isAdmin) {
-       token.isAdmin = user.isAdmin
+        token.isAdmin = user.isAdmin
+      }
+      if (user?.instructions) {
+        token.instructions = user.instructions;
       }
       return token
     },
     async session({session, token, user }) {
+      const instructions = await getUserInstructions(token.email)
+      session.user.id = token.email as string
       session.user.isAdmin = token.isAdmin as string
+      session.user.instructions = instructions
       return session
     }
   },

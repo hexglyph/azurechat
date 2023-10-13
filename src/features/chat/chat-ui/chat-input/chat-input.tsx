@@ -6,7 +6,7 @@ import { FC, FormEvent, useRef } from "react";
 import { Microphone } from "../chat-speech/microphone";
 import { useChatInputDynamicHeight } from "./use-chat-input-dynamic-height";
 
-interface Props {}
+interface Props { }
 
 const ChatInput: FC<Props> = (props) => {
   const { setInput, handleSubmit, isLoading, input } = useChatContext();
@@ -36,7 +36,7 @@ const ChatInput: FC<Props> = (props) => {
         <Textarea
           rows={rows}
           value={input}
-          placeholder="Send a message"
+          placeholder="Enviar mensagem"
           className="min-h-fit bg-background shadow-sm resize-none py-4 pr-[80px]"
           onKeyUp={onKeyUp}
           onKeyDown={onKeyDown}

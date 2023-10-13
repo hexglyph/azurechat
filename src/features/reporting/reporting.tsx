@@ -37,18 +37,18 @@ export const Reporting = async (props: ReportingProp) => {
     <Card className="h-full flex pt-8 overflow-y-auto">
       <div className="container mx-auto max-w-5xl space-y-8">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Chat Reporting</h2>
-          <p className="text-muted-foreground">History for this month - all users</p>
+          <h2 className="text-2xl font-bold tracking-tight">Reportar Chat</h2>
+          <p className="text-muted-foreground">Histórico deste mês - Todos os usuário</p>
         </div>
         <div className="flex items-center space-x-2">
           <Card className="flex-1">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[200px]">Conversation</TableHead>
-                  <TableHead className="w-[200px]">User</TableHead>
-                  <TableHead className="mw-[300px]">Title</TableHead>
-                  <TableHead>Date</TableHead>
+                  <TableHead className="w-[200px]">Conversação</TableHead>
+                  <TableHead className="w-[200px]">Usuário</TableHead>
+                  <TableHead className="mw-[300px]">Título</TableHead>
+                  <TableHead>Data</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

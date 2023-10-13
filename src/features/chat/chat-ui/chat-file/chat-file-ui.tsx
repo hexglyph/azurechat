@@ -21,7 +21,7 @@ export const ChatFileUI: FC = () => {
           type="file"
           required
           disabled={isUploadingFile}
-          placeholder="Describe the purpose of the document"
+          placeholder="Descreva o propósito do documento"
           onChange={(e) => {
             setIsFileNull(e.currentTarget.value === null);
           }}

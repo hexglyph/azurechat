@@ -11,26 +11,47 @@ import {
   CardTitle,
 } from "../ui/card";
 
+import { useState } from "react"
+
+import { Icons } from "@/components/icons"
+import Image from "next/image"
+
 export const LogIn = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   return (
-    <Card className="flex gap-2 flex-col min-w-[300px]">
+    <Card className="flex gap-2 flex-col">
       <CardHeader className="gap-2">
-        <CardTitle className="text-2xl flex gap-2">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={"ai-icon.png"} />
-          </Avatar>
-          <span className="text-primary">{AI_NAME}</span>
+        <CardTitle className="text-2xl flex items-center justify-center gap-2">
+          {
+            /*
+            <Image
+            width={96}
+            height={64}
+            alt={"Prodam"}
+            src={"/prodam.png"}
+            sizes="(max-width: 100%) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+            */
+          }
+          <Image
+            width={96}
+            height={64}
+            alt={"Prodam"}
+            src={"/brasao_prefeitura.png"}
+            sizes="(max-width: 100%) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </CardTitle>
-        <CardDescription>
-          Login in with your GitHub or Microsoft 365 account
-        </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <Button onClick={() => signIn("github")}>GitHub</Button>
-        <Button onClick={() => signIn("azure-ad")}> Microsoft 365</Button>
-        {process.env.NODE_ENV === "development" && (
-          <Button onClick={() => signIn("localdev")}>Basic Auth (DEV ONLY)</Button>
-        )}
+        <Button type="button" disabled={isLoading} onClick={() => signIn("azure-ad")}>
+          {isLoading ? (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.microsoft className="mr-2 h-4 w-4" />
+          )}{" "}
+          Microsoft 365
+        </Button>
       </CardContent>
     </Card>
   );

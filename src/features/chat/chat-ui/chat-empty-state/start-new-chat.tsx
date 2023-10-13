@@ -4,7 +4,7 @@ import { AI_NAME } from "@/features/theme/customise";
 import { FC } from "react";
 import { NewChat } from "../../chat-menu/new-chat";
 
-interface Prop {}
+interface Prop { }
 
 export const StartNewChat: FC<Prop> = (props) => {
   return (
@@ -18,11 +18,9 @@ export const StartNewChat: FC<Prop> = (props) => {
         </Typography>
         <div className="flex flex-col gap-2">
           <p className="">
-            Welcome to {AI_NAME}. You should interact in a friendly manner with
-            the AI assistant and refrain from participating in any harmful
-            activities.
+            Bem-vindo ao {AI_NAME}.
           </p>
-          <p>You can start a new chat with me by clicking the button below.</p>
+          <p>Você pode iniciar uma nova conversa comigo clicando no botão abaixo.</p>
         </div>
         <div className="-mx-5 -mb-5 p-5 flex flex-col border-t bg-muted">
           <NewChat />

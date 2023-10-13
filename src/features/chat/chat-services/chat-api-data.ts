@@ -79,8 +79,8 @@ const findRelevantDocuments = async (query: string, chatThreadId: string) => {
 };
 
 const defineSystemPrompt = () => {
-  const system_combine_template = `Given the following context and a question, create a final answer. 
-  If the context is empty or If you don't know the answer, politely decline to answer the question. Don't try to make up an answer.
+  const system_combine_template = `Dado o seguinte contexto e uma pergunta, crie uma resposta final.
+Se o contexto estiver vazio ou se você não souber a resposta, recuse-se educadamente a responder à pergunta. Não tente inventar uma resposta.
   ----------------
   context: {summaries}`;
 
